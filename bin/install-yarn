@@ -10,7 +10,7 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt-get update -y
 if [[ ${ENV_YARN_VERSION} == "latest" ]]
 then
-    sudo apt install --no-install-recommends yarn
+    sudo apt-get install -yq yarn
 else
-    sudo apt install --no-install-recommends yarn@${ENV_YARN_VERSION}
+    sudo apt-get install -yq yarn@${ENV_YARN_VERSION}
 fi
