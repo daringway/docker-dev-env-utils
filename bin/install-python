@@ -1,19 +1,43 @@
 #!/usr/bin/env bash
 
+# Can install multiple python versions
+# But the first install will set the pyenv global
+
 ENV_PYTHON_VERSION=${1:-latest}
 
-curl https://pyenv.run | bash
+# From https://devguide.python.org/getting-started/setup-building/index.html#deps-on-linux
+sudo apt-get install -y build-essential gdb lcov pkg-config \
+      libbz2-dev libffi-dev libgdbm-dev libgdbm-compat-dev liblzma-dev \
+      libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev \
+      lzma lzma-dev tk-dev uuid-dev zlib1g-dev
+
+if [[ ! -d ~/.pyenv ]]
+then
+    curl https://pyenv.run | bash
 
 echo '
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+eval "$(pyenv init -)"' >> ~/.bashrc
+# eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+echo "pyenv global ${ENV_PYTHON_VERSION}" >> ~/.bashrc
+fi
 
-eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc.d/63-python
-
-. ~/.bashrc.d/63-python
+. ~/.bashrc
 
 # TODO, make this dynamic to use ${ENV_PYTHON_VERSION}:latest because local doesn't accept latest like install
 pyenv install --skip-existing ${ENV_PYTHON_VERSION}
 
-echo "pyenv global ${ENV_PYTHON_VERSION}" >> ~/.bashrc.d/63-python
+. ~/.bashrc
+
+echo "Searing for requirements.txt from $(pwd)"
+echo "finding:"
+find / -name requirements.txt 2>/dev/null 
+for DIR in . .devcontainer /tmp 
+do
+    REQ=$DIR/requirements.txt 
+    if [[ -f $REQ ]]
+    then
+        pip install -r $REQ
+    fi
+done

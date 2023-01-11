@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO Fix for Docker DevEnv
+
 ENV_RUBY_VERSION=${1:-latest}
 
 # https://rvm.io/

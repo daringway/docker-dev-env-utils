@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Stop processing and exit on failure
+[ -n "$ENV_PYTHON_VERSION" ]      && install-python      || exit $?
+[ -n "$ENV_NODE_VERSION" ]        && install-node        || exit $?
+[ -n "$ENV_YARN_VERSION" ]        && install-yarn        || exit $?
+[ -n "$ENV_RUBY_VERSION" ]        && install-ruby        || exit $?
+[ -n "$ENV_AMPLIFY_CLI_VERSION" ] && install-amplify-cli || exit $?
+[ -n "$ENV_AWS_VERSION" ]         && install-aws-cli     || exit $?

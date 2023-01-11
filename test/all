@@ -17,8 +17,6 @@ function fail {
 
 . ~/.nvm/nvm.sh
 . ~/.rvm/scripts/rvm
-. ~/.bashrc.d/63-python
-
 . ~/.bashrc
 . ~/.profile
 
