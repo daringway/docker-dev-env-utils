@@ -2,7 +2,7 @@
 
 BRANCH=$(git symbolic-ref HEAD 2>/dev/null | sed -e 's|^refs/heads/||')
 
-SEARCH_PATH="env /usr/daring/env /daring/env"
+SEARCH_PATH="env /dw/env"
 
 function findFile {
     FILE=$1
