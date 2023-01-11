@@ -2,7 +2,8 @@
 
 ENV_AMPLIFY_CLI_VERSION=${1:-latest}
 
-apt-get install -y xdg-utils
+sudo apt-get update -y
+sudo apt-get install -y xdg-utils
 
 . ~/.nvm/nvm.sh
 

@@ -5,6 +5,7 @@
 
 ENV_PYTHON_VERSION=${1:-latest}
 
+sudo apt-get update -y
 # From https://devguide.python.org/getting-started/setup-building/index.html#deps-on-linux
 sudo apt-get install -y build-essential gdb lcov pkg-config \
       libbz2-dev libffi-dev libgdbm-dev libgdbm-compat-dev liblzma-dev \
