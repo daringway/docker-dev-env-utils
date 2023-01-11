@@ -7,3 +7,4 @@
 [ -n "$ENV_RUBY_VERSION" ]        && install-ruby        || exit $?
 [ -n "$ENV_AMPLIFY_CLI_VERSION" ] && install-amplify-cli || exit $?
 [ -n "$ENV_AWS_VERSION" ]         && install-aws-cli     || exit $?
+[ -n "$ENV_BY_PIP" ]              && install-by-pip      || exit $?

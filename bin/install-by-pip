@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+. ~/.bashrc
+
+for x in $* $ENV_BY_PIP
+do
+    pip install $x
+done
