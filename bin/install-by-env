@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Stop processing and exit on failure
+[ -n "$INSTALL_PYTHON" ]      && install-python $INSTALL_PYTHON || exit $?
+[ -n "$INSTALL_NODE" ]        && install-node $INSTALL_NODE || exit $?
+[ -n "$INSTALL_YARN" ]        && install-yarn $INSTALL_YARN || exit $?
+[ -n "$INSTALL_RUBY" ]        && install-ruby $INSTALL_RUBY || exit $?
+[ -n "$INSTALL_AMPLIFY_CLI" ] && install-amplify-cli $INSTALL_AMPLIFY_CLI || exit $?
+[ -n "$INSTALL_AWS" ]         && install-aws-cli $INSTALL_AWS || exit $?
+[ -n "$INSTALL_BY_PIP" ]      && install-by-pip $INSTALL_BY_PIP || exit $?
