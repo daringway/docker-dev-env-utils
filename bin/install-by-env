@@ -8,3 +8,5 @@
 [ -n "$INSTALL_AMPLIFY_CLI" ] && install-amplify-cli $INSTALL_AMPLIFY_CLI || exit $?
 [ -n "$INSTALL_AWS" ]         && install-aws-cli $INSTALL_AWS || exit $?
 [ -n "$INSTALL_BY_PIP" ]      && install-by-pip $INSTALL_BY_PIP || exit $?
+
+install-cleanup || exit $?

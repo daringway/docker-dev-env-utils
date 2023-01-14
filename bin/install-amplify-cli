@@ -2,14 +2,19 @@
 
 ENV_AMPLIFY_CLI_VERSION=${1:-latest}
 
-sudo apt-get update -y
+. ~/.nvm/nvm.sh
+type node || echo "install-amplify required node" && exit 1
+
+# sudo apt-get update -y
 sudo apt-get install -yq xdg-utils
 
-. ~/.nvm/nvm.sh
+
 
 if [[ ${ENV_AMPLIFY_CLI_VERSION} == latest ]] 
 then
-    npm install -g @aws-amplify/cli
+    npm install -g @aws-amplify/cli || exit $?
 else
-    npm install -g @aws-amplify/cli@${ENV_AMPLIFY_CLI_VERSION}
+    npm install -g @aws-amplify/cli@${ENV_AMPLIFY_CLI_VERSION} || exit $?
 fi
+# Now need download packages from package.cli.amplify.aws
+amplify || exit $?

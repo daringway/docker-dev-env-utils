@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sudo apt-get clean || exit $?
+sudo rm -r /tmp/* || exit $?
