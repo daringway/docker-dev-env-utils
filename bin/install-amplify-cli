@@ -3,12 +3,10 @@
 ENV_AMPLIFY_CLI_VERSION=${1:-latest}
 
 . ~/.nvm/nvm.sh
-type node || echo "install-amplify required node" && exit 1
+type node || evale 'echo "install-amplify required node"; exit 1'
 
 # sudo apt-get update -y
 sudo apt-get install -yq xdg-utils
-
-
 
 if [[ ${ENV_AMPLIFY_CLI_VERSION} == latest ]] 
 then
