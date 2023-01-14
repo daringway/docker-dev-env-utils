@@ -13,13 +13,23 @@ RUN for x in /dw/bin/* ; do ln -s $x /usr/bin/$(basename $x) ; done
 RUN useradd -l -u 50000 -G sudo -md /home/daring -s /bin/bash -p daring daring 
 RUN adduser daring sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN cat /root/.bashrc > /home/daring/.bashrc
 
 USER daring
 WORKDIR "/home/daring"
 
 FROM base as test
 COPY test /dw/test
-CMD ["fish"]
+
+RUN install-python      3.10.9  # Must specify patch version
+RUN install-aws-cli     latest  # Only latest is supported
+RUN install-node        18.12.1 # Any nvm support version
+RUN install-yarn        latest  # Latest or apt version
+RUN install-amplify-cli 10.6.0  # Any npm supported version
+
+# RUN install-by-pip      invoke==1.7
+
+CMD ["bash"]
 
 FROM base as default
 CMD ["bash"]
