@@ -14,14 +14,15 @@ RUN for x in /dw/bin/* ; do ln -s $x /usr/bin/$(basename $x) ; done
 #     && git clone --depth 1 https://github.com/daringway/cli-tools.git
 # run install.sh for cli-tools after user 
 
-RUN useradd -l -u 50000 -G sudo -md /home/developer -s /bin/bash -p developer developer 
-RUN adduser developer sudo
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-RUN cat /root/.bashrc > /home/developer/.bashrc
+# Permission issue with docker and non-root as repo is copied as vscode
+# RUN useradd -l -u 50000 -G sudo -md /home/developer -s /bin/bash -p developer developer 
+# RUN adduser developer sudo
+# RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+# RUN cat /root/.bashrc > /home/developer/.bashrc
 
 RUN date > /dw/build-date
-USER developer
-WORKDIR "/home/developer"
+# USER developer
+# WORKDIR "/home/developer"
 
 # RUN /dw/cli-tools/install.sh
 
