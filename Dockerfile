@@ -10,14 +10,20 @@ COPY env /dw/env
 COPY bin /dw/bin
 RUN for x in /dw/bin/* ; do ln -s $x /usr/bin/$(basename $x) ; done
 
-RUN useradd -l -u 50000 -G sudo -md /home/daring -s /bin/bash -p daring daring 
-RUN adduser daring sudo
+# RUN cd /dw \
+#     && git clone --depth 1 https://github.com/daringway/cli-tools.git
+# run install.sh for cli-tools after user 
+
+RUN useradd -l -u 50000 -G sudo -md /home/developer -s /bin/bash -p developer developer 
+RUN adduser developer sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-RUN cat /root/.bashrc > /home/daring/.bashrc
+RUN cat /root/.bashrc > /home/developer/.bashrc
 
 RUN date > /dw/build-date
-USER daring
-WORKDIR "/home/daring"
+USER developer
+WORKDIR "/home/developer"
+
+# RUN /dw/cli-tools/install.sh
 
 FROM base as test
 COPY test /dw/test
@@ -28,6 +34,9 @@ COPY test /dw/test
 # RUN install-amplify-cli 10.6.0  # Any npm supported version
 # RUN install-by-pip      invoke==1.7
 
+CMD ["bash"]
+
+FROM base as developer
 CMD ["bash"]
 
 FROM base as default
