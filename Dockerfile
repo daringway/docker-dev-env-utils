@@ -40,9 +40,3 @@ COPY test /dw/test
 # RUN install-by-pip      invoke==1.7
 
 CMD ["bash"]
-
-FROM base as developer
-CMD ["bash"]
-
-FROM base as default
-CMD ["bash"]
