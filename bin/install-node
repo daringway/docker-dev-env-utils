@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 
 ENV_NODE_VERSION=${1:-latest}

@@ -1,4 +1,5 @@
-FROM docker/dev-environments-default:stable-1 as base
+# FROM docker/dev-environments-default:stable-1 as base
+FROM mcr.microsoft.com/devcontainers/base as base
 
 # Fish repo
 RUN echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_11/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list && \
@@ -20,9 +21,12 @@ RUN for x in /dw/bin/* ; do ln -s $x /usr/bin/$(basename $x) ; done
 # RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 # RUN cat /root/.bashrc > /home/developer/.bashrc
 
+# Remove the interactive crap
+RUN cat /root/.bashrc > /home/vscode/.bashrc
+
 RUN date > /dw/build-date
-# USER developer
-# WORKDIR "/home/developer"
+USER vscode
+WORKDIR "/home/vscode"
 
 # RUN /dw/cli-tools/install.sh
 
