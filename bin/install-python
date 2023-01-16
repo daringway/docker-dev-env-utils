@@ -9,7 +9,7 @@ ENV_PYTHON_VERSION=${1:-pkg}
 
 if [[ "$ENV_PYTHON_VERSION" == "pkg" ]]
 then
-   sudo apt-get install python
+   sudo apt-get install -y python
    exit $?
 elif [[ "$ENV_PYTHON_VERSION" == "latest" ]]
 then
