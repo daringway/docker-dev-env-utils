@@ -2,13 +2,18 @@
 
 # Can install multiple python versions
 # But the first install will set the pyenv global
+# If latest is used, will install using apt-get, faster but not
 
 # will install latest 
-ENV_PYTHON_VERSION=${1:-latest}
+ENV_PYTHON_VERSION=${1:-pkg}
 
-if [[ "$ENV_PYTHON_VERSION" == "latest" ]]
+if [[ "$ENV_PYTHON_VERSION" == "pkg" ]]
 then
-    ENV_PYTHON_VERSION=3
+   sudo apt-get install python
+   exit $?
+elif [[ "$ENV_PYTHON_VERSION" == "latest" ]]
+then
+   ENV_PYTHON_VERSION=3
 fi
 
 install-gcc
@@ -30,15 +35,3 @@ fi
 pyenv install --skip-existing ${ENV_PYTHON_VERSION}
 
 . ~/.bashrc
-
-# echo "Searing for requirements.txt from $(pwd)"
-# echo "finding:"
-# find / -name requirements.txt 2>/dev/null 
-# for DIR in . .devcontainer /tmp 
-# do
-#     REQ=$DIR/requirements.txt 
-#     if [[ -f $REQ ]]
-#     then
-#         pip install -r $REQ
-#     fi
-# done
