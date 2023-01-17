@@ -32,14 +32,19 @@ WORKDIR "/home/vscode"
 
 FROM base as test
 COPY test /dw/test
-# RUN install-python      3.10.9  # Must specify patch version
-# RUN install-aws-cli     latest  # Only latest is supported
+
+RUN install-python      3.10.9  # Must specify patch version
+RUN install-aws-cli     latest  # Only latest is supported
 RUN install-node        18.12.1 # Any nvm support version
-# RUN install-yarn        latest  # Latest or apt version
-# RUN install-amplify-cli 10.6.0  # Any npm supported version
-# RUN install-by-pip      invoke==1.7
+RUN install-yarn        latest  # Latest or apt version
+RUN install-amplify-cli 10.6.0  # Any npm supported version
+RUN install-by-pip      invoke==1.7
 
 # Default as well.
 FROM base as developer
-RUN install-node latest
+RUN install-docker
+CMD ["bash"]
+
+# Default as well.
+FROM base as release
 CMD ["bash"]

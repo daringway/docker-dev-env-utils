@@ -5,6 +5,7 @@ services:
     - infinity
     build: 
       context: .
+      target: developer
     init: true
     volumes:
     - type: bind
