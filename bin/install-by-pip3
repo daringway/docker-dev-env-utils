@@ -2,4 +2,12 @@
 
 . ~/.bashrc
 
-pip3 install $*
+for x in $*
+do
+    if [[ -f $x ]] 
+    then
+        pip3 install -r $x
+    else
+        pip3 install $*
+    fi
+done

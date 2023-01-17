@@ -2,4 +2,12 @@
 
 . ~/.bashrc
 
-pip install $*
+for x in $*
+do
+    if [[ -f $x ]] 
+    then
+        pip install -r $x
+    else
+        pip install $*
+    fi
+done
