@@ -9,7 +9,7 @@ ENV_PYTHON_VERSION=${1:-pkg}
 
 if [[ "$ENV_PYTHON_VERSION" == "pkg" ]]
 then
-   sudo apt-get install -y python
+   sudo apt-get install -y python3 python3-pip
    exit $?
 elif [[ "$ENV_PYTHON_VERSION" == "latest" ]]
 then
