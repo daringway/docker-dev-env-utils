@@ -31,8 +31,12 @@ COPY test /dw/test
 # Default as well.
 FROM base as developer
 RUN install-docker
+USER vscode
+WORKDIR /home/vscode
 CMD ["bash"]
 
 # Default as well.
 FROM base as release
+USER vscode
+WORKDIR /home/vscode
 CMD ["bash"]
