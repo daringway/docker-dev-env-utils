@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+ENV_GOLANG_VERSION=${1:-pkg}
+
+if [[ "$ENV_GOLANG_VERSION" == "pkg" ]]
+then
+   sudo apt-get install -y golang
+   exit $?
+else
+    echo "only pkg is supported"
+    exit 2
+fi
