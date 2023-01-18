@@ -16,22 +16,27 @@ then
    ENV_PYTHON_VERSION=3
 fi
 
-install-gcc
+install-build-tools
 
-if [[ ! -d ~/.pyenv ]]
+TAR_FILE="Python-${ENV_PYTHON_VERSION}.tgz"
+
+cd /tmp
+wget https://www.python.org/ftp/python/${ENV_PYTHON_VERSION}/${TAR_FILE}
+tar xzf ${TAR_FILE}
+
+cd Python-${ENV_PYTHON_VERSION}
+# ./configure --enable-optimizations
+./configure --enable-optimizations  --exec-prefix=/usr/local
+
+make -j 2
+sudo make install
+
+cd /usr/local/bin
+if [[ -x python3 && ! -x python ]]
 then
-    curl https://pyenv.run | bash
-
-echo '
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"' >> ~/.bashrc
-echo "pyenv global ${ENV_PYTHON_VERSION}" >> ~/.bashrc
+    ln -s python3 python
 fi
-
-. ~/.bashrc
-
-# TODO, make this dynamic to use ${ENV_PYTHON_VERSION}:latest because local doesn't accept latest like install
-pyenv install --skip-existing ${ENV_PYTHON_VERSION}
-
-. ~/.bashrc
+if [[ -x pip3 && ! -x pip ]]
+then
+    ln -s pip3 pip
+fi

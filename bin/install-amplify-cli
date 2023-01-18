@@ -2,7 +2,6 @@
 
 ENV_AMPLIFY_CLI_VERSION=${1:-latest}
 
-. ~/.nvm/nvm.sh
 type node || evale 'echo "install-amplify required node"; exit 1'
 
 # sudo apt-get update -y

@@ -11,34 +11,22 @@ COPY env /dw/env
 COPY bin /dw/bin
 RUN for x in /dw/bin/* ; do ln -s $x /usr/bin/$(basename $x) ; done
 
-# RUN cd /dw \
-#     && git clone --depth 1 https://github.com/daringway/cli-tools.git
-# run install.sh for cli-tools after user 
-
-# Permission issue with docker and non-root as repo is copied as vscode
-# RUN useradd -l -u 50000 -G sudo -md /home/developer -s /bin/bash -p developer developer 
-# RUN adduser developer sudo
-# RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-# RUN cat /root/.bashrc > /home/developer/.bashrc
-
-# Remove the interactive crap
-RUN cat /root/.bashrc > /home/vscode/.bashrc
-
 RUN date > /dw/build-date
-USER vscode
-WORKDIR "/home/vscode"
-
-# RUN /dw/cli-tools/install.sh
 
 FROM base as test
 COPY test /dw/test
 
-RUN install-python      3.10.9  # Must specify patch version
-RUN install-aws-cli     latest  # Only latest is supported
-RUN install-node        18.12.1 # Any nvm support version
-RUN install-yarn        latest  # Latest or apt version
-RUN install-amplify-cli 10.6.0  # Any npm supported version
-RUN install-by-pip      invoke==1.7
+# RUN install-python      3.10.9  # Must specify patch version
+# RUN install-aws-cli     latest  # Only latest is supported
+# RUN install-node        18.12.1 # Any nvm support version
+# RUN install-yarn        latest  # Latest or apt version
+# RUN install-amplify-cli 10.6.0  # Any npm supported version
+# RUN install-by-pip      invoke==1.7
+
+# time in seconds
+# gRPC Fuse: 65.30, 80.24, 80.90
+# virtioFS:  48.26, 40.69, 44.33
+# native:    29.60, 24.70, 25.38
 
 # Default as well.
 FROM base as developer

@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-. ~/.bashrc
-
 for x in $*
 do
     if [[ -f $x ]] 
