@@ -11,7 +11,7 @@ if [[ $(uname -m) == "aarch64" ]]
 then
     ARCH="arm64"
 else
-    ARCH="x86"
+    ARCH="x64"
 fi
 
 B_DIR="node-v${ENV_NODE_VERSION}-linux-${ARCH}"

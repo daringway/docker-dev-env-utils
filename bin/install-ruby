@@ -6,6 +6,8 @@ ENV_RUBY_VERSION=${1:-latest}
 
 RINSTALL_VERSION=0.8.5
 
+install-build-tools
+
 wget -O ruby-install-${RINSTALL_VERSION}.tar.gz https://github.com/postmodern/ruby-install/archive/v${RINSTALL_VERSION}.tar.gz
 tar -xzvf ruby-install-${RINSTALL_VERSION}.tar.gz
 cd ruby-install-${RINSTALL_VERSION}/
