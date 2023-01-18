@@ -5,26 +5,23 @@
 # If latest is used, will install using apt-get, faster but not
 
 # will install latest 
-ENV_PYTHON_VERSION=${1:-pkg}
+PYTHON_VERSION=${1:-pkg}
 
-if [[ "$ENV_PYTHON_VERSION" == "pkg" ]]
+if [[ "$PYTHON_VERSION" == "pkg" ]]
 then
    sudo apt-get install -y python3 python3-pip
    exit $?
-elif [[ "$ENV_PYTHON_VERSION" == "latest" ]]
-then
-   ENV_PYTHON_VERSION=3
 fi
 
 install-build-tools
 
-TAR_FILE="Python-${ENV_PYTHON_VERSION}.tgz"
+TAR_FILE="Python-${PYTHON_VERSION}.tgz"
 
 cd /tmp
-wget https://www.python.org/ftp/python/${ENV_PYTHON_VERSION}/${TAR_FILE}
+wget https://www.python.org/ftp/python/${PYTHON_VERSION}/${TAR_FILE}
 tar xzf ${TAR_FILE}
 
-cd Python-${ENV_PYTHON_VERSION}
+cd Python-${PYTHON_VERSION}
 # ./configure --enable-optimizations
 ./configure --enable-optimizations  --exec-prefix=/usr/local
 

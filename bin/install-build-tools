@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# ENV_GCC_VERSION=${1:-latest}
-
 sudo apt-get update -y
 
 # From https://devguide.python.org/getting-started/setup-building/index.html#deps-on-linux

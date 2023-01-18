@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
-# TODO Fix for Docker DevEnv
+RUBY_VERSION=${1:-pkg}
 
-ENV_RUBY_VERSION=${1:-latest}
+if [[ "$RUBY_VERSION" == "pkg" ]]
+then
+   sudo apt-get install -y ruby
+   exit $?
+fi
 
 RINSTALL_VERSION=0.8.5
 
@@ -13,4 +17,4 @@ tar -xzvf ruby-install-${RINSTALL_VERSION}.tar.gz
 cd ruby-install-${RINSTALL_VERSION}/
 sudo make install
 
-sudo ruby-install --install-dir /usr/local ruby ${ENV_RUBY_VERSION}
+sudo ruby-install --install-dir /usr/local ruby ${RUBY_VERSION}

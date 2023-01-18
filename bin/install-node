@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-ENV_NODE_VERSION=${1:-latest}
+NODE_VERSION=${1:-pkg}
 
-if [[ "${ENV_NODE_VERSION}" == "latest" ]]
+if [[ "$NODE_VERSION" == "pkg" ]]
 then
-    ENV_NODE_VERSION="--lts"
+   sudo apt-get install -y nodejs
+   exit $?
 fi
 
 if [[ $(uname -m) == "aarch64" ]]
@@ -14,9 +15,9 @@ else
     ARCH="x64"
 fi
 
-B_DIR="node-v${ENV_NODE_VERSION}-linux-${ARCH}"
-TAR_FILE="node-v${ENV_NODE_VERSION}-linux-${ARCH}.tar.gz"
-URL="https://nodejs.org/dist/v${ENV_NODE_VERSION}/${TAR_FILE}"
+B_DIR="node-v${NODE_VERSION}-linux-${ARCH}"
+TAR_FILE="node-v${NODE_VERSION}-linux-${ARCH}.tar.gz"
+URL="https://nodejs.org/dist/v${NODE_VERSION}/${TAR_FILE}"
 
 cd /tmp
 wget $URL

@@ -1,4 +1,14 @@
 #!/usr/bin/env bash
 
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
+DOCKER_VERSION=${1:-pkg}
+
+if [[ "$DOCKER_VERSION" == "pkg" ]]
+then
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
+    exit $?
+else
+    echo "only pkg is supported"
+    exit 2
+fi
+

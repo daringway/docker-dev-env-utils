@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-ENV_GOLANG_VERSION=${1:-pkg}
+GOLANG_VERSION=${1:-pkg}
 
-if [[ "$ENV_GOLANG_VERSION" == "pkg" ]]
+if [[ "$GOLANG_VERSION" == "pkg" ]]
 then
    sudo apt-get install -y golang
    exit $?
