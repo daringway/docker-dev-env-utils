@@ -13,6 +13,10 @@ RUN for x in /dw/bin/* ; do ln -s $x /usr/bin/$(basename $x) ; done
 
 RUN date > /dw/build-date
 
+USER vscode
+WORKDIR /home/vscode
+CMD ["bash"]
+
 FROM base as test
 COPY test /dw/test
 
@@ -31,12 +35,6 @@ COPY test /dw/test
 # Default as well.
 FROM base as developer
 RUN install-docker
-USER vscode
-WORKDIR /home/vscode
-CMD ["bash"]
 
 # Default as well.
 FROM base as release
-USER vscode
-WORKDIR /home/vscode
-CMD ["bash"]
