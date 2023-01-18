@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-RUBY_VERSION=${1:-pkg}
+RUBY_VERSION=${1:-default}
 
-if [[ "$RUBY_VERSION" == "pkg" ]]
+if [[ "$RUBY_VERSION" == "default" ]]
 then
    sudo apt-get install -y ruby
    exit $?

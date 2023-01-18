@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-GOLANG_VERSION=${1:-pkg}
+GOLANG_VERSION=${1:-default}
 
-if [[ "$GOLANG_VERSION" == "pkg" ]]
+if [[ "$GOLANG_VERSION" == "default" ]]
 then
    sudo apt-get install -y golang
    exit $?
 else
-    echo "only pkg is supported"
+    echo "only default is supported"
     exit 2
 fi

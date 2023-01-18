@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+DOCKER_VERSION=${1:-default}
+
+if [[ "$DOCKER_VERSION" != "default" ]]
+then
+    echo "only default is supported"
+    exit 2
+fi
+
 # Install aws cli
 if [[ $(uname -m) == "aarch64" ]]
 then

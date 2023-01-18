@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+BUILD_VERSION=${1:-default}
+
+if [[ "$BUILD_VERSION" != "default" ]]
+then
+    echo "only default is supported"
+    exit 2
+fi
+
 sudo apt-get update -y
 
 # From https://devguide.python.org/getting-started/setup-building/index.html#deps-on-linux

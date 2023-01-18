@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-NODE_VERSION=${1:-pkg}
+NODE_VERSION=${1:-default}
 
-if [[ "$NODE_VERSION" == "pkg" ]]
+if [[ "$NODE_VERSION" == "default" ]]
 then
    sudo apt-get install -y nodejs
    exit $?

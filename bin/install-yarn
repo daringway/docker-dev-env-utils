@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ENV_YARN_VERSION=${1:-latest}
+ENV_YARN_VERSION=${1:-default}
 
 # Install Yarn
 
@@ -8,7 +8,7 @@ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
 sudo apt-get update -y
-if [[ ${ENV_YARN_VERSION} == "latest" ]]
+if [[ ${ENV_YARN_VERSION} == "default" ]]
 then
     sudo apt-get install -yq yarn
 else
