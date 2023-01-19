@@ -2,16 +2,17 @@
 
 AMPLIFY_CLI_VERSION=${1:-default}
 
-type node || evale 'echo "install-amplify required node"; exit 1'
+type node || eval 'echo "ERROR: install-amplify requires node"; exit 1'
 
 # sudo apt-get update -y
 sudo apt-get install -yq xdg-utils
 
 if [[ ${AMPLIFY_CLI_VERSION} == default ]] 
 then
-    npm install -g @aws-amplify/cli || exit $?
+    sudo npm install -g @aws-amplify/cli || exit $?
 else
-    npm install -g @aws-amplify/cli@${AMPLIFY_CLI_VERSION} || exit $?
+    sudo npm install -g @aws-amplify/cli@${AMPLIFY_CLI_VERSION} || exit $?
 fi
+
 # Now need download packages from package.cli.amplify.aws
 amplify || exit $?

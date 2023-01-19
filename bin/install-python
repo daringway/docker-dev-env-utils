@@ -10,6 +10,17 @@ PYTHON_VERSION=${1:-default}
 if [[ "$PYTHON_VERSION" == "default" ]]
 then
    sudo apt-get install -y python3 python3-pip
+
+    cd /usr/bin
+    if [[ -x python3 && ! -x python ]]
+    then
+        sudo ln -s python3 python
+    fi
+    if [[ -x pip3 && ! -x pip ]]
+    then
+        sudo ln -s pip3 pip
+    fi
+
    exit $?
 fi
 
@@ -31,9 +42,9 @@ sudo make install
 cd /usr/local/bin
 if [[ -x python3 && ! -x python ]]
 then
-    ln -s python3 python
+    sudo ln -s python3 python
 fi
 if [[ -x pip3 && ! -x pip ]]
 then
-    ln -s pip3 pip
+    sudo ln -s pip3 pip
 fi

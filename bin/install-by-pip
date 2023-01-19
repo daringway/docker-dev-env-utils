@@ -4,8 +4,8 @@ for x in $*
 do
     if [[ -f $x ]] 
     then
-        pip install -r $x
+        sudo pip install -r $x
     else
-        pip install $*
+        sudo pip install $*
     fi
 done
