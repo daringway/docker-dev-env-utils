@@ -1,5 +1,6 @@
 # DaringWay Dev Container
-# Support for Docker Desktop, GitHub Codespace, and GitPod
+
+Support for Docker Desktop, GitHub Codespace, and GitPod
 
 This is a base dockerfile use to created GitPod Workspaces Dev Environments that are pinned to specific versions of software.  Documentation on how to use this dockerfile is in the associated [gitpod template](https://github.com/daringway/gitpod-template) repo.
 
@@ -18,4 +19,3 @@ Interactive check dockerfile after build
 ```
 docker run -it dev-env-utils-test
 ```
-

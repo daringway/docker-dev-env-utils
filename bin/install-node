@@ -4,7 +4,7 @@ NODE_VERSION=${1:-default}
 
 if [[ "$NODE_VERSION" == "default" ]]
 then
-   sudo apt-get install -y nodejs
+   sudo apt-get install -y nodejs npm
    exit $?
 fi
 
