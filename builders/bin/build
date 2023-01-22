@@ -8,4 +8,4 @@ TS_FILE=/tmp/start_ts
 
 touch $TS_FILE
 eval build-${APP} ${VERSION}
-(cd /usr/local; find . -newer $TS_FILE | tar czvf /tmp/${APP}-${ARCH}-${VERSION}.tar.gz -T -) 
+(cd /usr/local; find . -newer $TS_FILE | tar czvf /dist/${APP}-${ARCH}-${VERSION}.tar.gz -T -) 

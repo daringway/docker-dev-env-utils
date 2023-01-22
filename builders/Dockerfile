@@ -8,6 +8,6 @@ RUN apt-get update -y && apt-get install -yq \
     lzma lzma-dev tk-dev uuid-dev zlib1g-dev
 
 COPY bin /usr/bin
-CMD echo hello; bash
+CMD bash
 # docker build --platform linux/arm64 -f Dockerfile -t builder .
-# docker run -v $(pwd):/source:rw builder invoke developer.build-release
+# docker run -it -v $(pwd)/dist:/dist:rw builder build python 3.10.1

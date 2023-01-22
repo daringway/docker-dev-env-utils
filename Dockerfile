@@ -33,8 +33,4 @@ COPY test /dw/test
 # native:    29.60, 24.70, 25.38
 
 # Default as well.
-FROM base as developer
-RUN install-docker
-
-# Default as well.
 FROM base as release
