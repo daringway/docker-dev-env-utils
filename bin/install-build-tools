@@ -8,7 +8,7 @@ then
     exit 2
 fi
 
-sudo apt-get update -y
+sudo apt-get update -qq
 
 # From https://devguide.python.org/getting-started/setup-building/index.html#deps-on-linux
 sudo apt-get install -yq build-essential gdb lcov pkg-config \

@@ -34,3 +34,11 @@ COPY test /dw/test
 
 # Default as well.
 FROM base as release
+
+# To test changes to this docker file before pushing you can build/run
+# Build on Mac M1
+#     docker build --platform linux/arm64 -f Dockerfile -t container-test .
+# Othe platforms
+#     docker build -f Dockerfile -t container-test .
+# Test environment before commit
+#     docker run -it container-test bash

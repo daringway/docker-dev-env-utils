@@ -2,12 +2,12 @@
 
 DOCKER_VERSION=${1:-default}
 
-if [[ "$DOCKER_VERSION" == "default" ]]
+if [[ "$DOCKER_VERSION" != "default" ]]
 then
-    curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
-    sudo sh /tmp/get-docker.sh
-    exit $?
-else
     echo "only default is supported"
     exit 2
 fi
+
+curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+sudo sh /tmp/get-docker.sh
+exit $?

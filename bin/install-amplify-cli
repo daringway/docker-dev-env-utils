@@ -4,7 +4,7 @@ AMPLIFY_CLI_VERSION=${1:-default}
 
 type node || eval 'echo "ERROR: install-amplify requires node"; exit 1'
 
-# sudo apt-get update -y
+sudo apt-get update -qq
 sudo apt-get install -yq xdg-utils
 
 if [[ ${AMPLIFY_CLI_VERSION} == default ]] 
