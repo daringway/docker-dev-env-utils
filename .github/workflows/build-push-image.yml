@@ -12,6 +12,8 @@ name: Create and publish a Docker image
 on:
   push:
     branches: ["main"]
+    tags:
+      - "v*"
 
   # Allows you to run this workflow from the Actions tab
   workflow_dispatch:
@@ -39,13 +41,16 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GHCR_TOKEN }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v4
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest
+            type=semvar,pattern={{version}}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
