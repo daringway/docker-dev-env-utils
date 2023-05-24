@@ -14,3 +14,19 @@ then
 else
     sudo apt-get install -yq yarn@${ENV_YARN_VERSION}
 fi
+
+# Set it so that globals install in /usr/local instead of home account.
+# /usr/local is persistent in the docker image
+yarn config set prefix /usr/local
+yarn config set global-folder /usr/local/lib
+
+# Bad Things Happen When you Mix
+rm /usr/local/bin/npm
+cat >/usr/local/bin/npm <<%EOF%
+#!/usr/bin/env bash
+echo "ERROR: npm not installed" >&2
+echo "This is a yarn managed devcontainer" >&2
+echo "Use the yarn command" >&2
+exit 2
+%EOF%
+chmod +x /usr/local/bin/npm
