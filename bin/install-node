@@ -24,3 +24,7 @@ wget $URL
 tar xzf ${TAR_FILE}
 cd $B_DIR
 tar cf - bin include lib share | (cd /usr/local; sudo tar xvf -)
+
+# Set it so that globals install in /usr/local instead of home account.
+# /usr/local is persistent in the docker image
+npm config set prefix /usr/local
